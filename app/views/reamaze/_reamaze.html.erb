@@ -1,0 +1,36 @@
+<%
+raise "brand_subdomain must be provided for Reamaze" unless defined? brand_subdomain and brand_subdomain.present?
+user_id = nil unless defined? user_id
+user_email = nil unless defined? user_email
+sso_key = nil unless defined? sso_key
+auth_key = sso_key ? OpenSSL::HMAC.hexdigest('sha256', sso_key, "#{user.id}:#{user.email}") : nil
+%>
+
+<script type="text/javascript">
+  (function() {
+    function async_load() {
+      var s = document.createElement('script');
+      s.type = 'text/javascript'; s.async = true;
+      s.src = '//d3itxuyrq7vzpz.cloudfront.net/assets/reamaze.js';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (window.attachEvent) {
+      window.attachEvent('onload', async_load);
+    } else {
+      window.addEventListener('load', async_load, false);
+    }
+  })();
+</script>
+<script type="text/javascript">
+  var _support = _support || {};
+  _support['account'] = '<%= brand_subdomain %>';
+  _support['ui'] = {
+    widget: true
+  };
+  <% if user_id and auth_key and user_email %>
+    _support['id'] = '<%= user_id %>';
+    _support['authkey'] = '<%= auth_key %>';
+    _support['email'] = '<%= user_email %>';
+  <% end %>
+</script>
