@@ -18,7 +18,7 @@ In your Gemfile, simply add:
     
 ## Usage
 
-For the most basic integration, simply inlude the `reamaze` partial. You must include your brand subdomain to load the proper help desk associated with your account
+For the most basic integration, simply include the `reamaze` partial. You must include your brand subdomain to load the proper help desk associated with your account
 
     <%= render partial: 'reamaze/reamaze', locals: { brand_subdomain: '***YOUR REAMAZE SUBDOMAIN HERE***'} %>
     
