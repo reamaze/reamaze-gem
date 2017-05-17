@@ -11,7 +11,7 @@ auth_key = sso_key ? OpenSSL::HMAC.hexdigest('sha256', sso_key, "#{user.id}:#{us
     function async_load() {
       var s = document.createElement('script');
       s.type = 'text/javascript'; s.async = true;
-      s.src = '//d3itxuyrq7vzpz.cloudfront.net/assets/reamaze.js';
+      s.src = 'https://cdn.reamaze.com/assets/reamaze.js';
       var x = document.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
     }
