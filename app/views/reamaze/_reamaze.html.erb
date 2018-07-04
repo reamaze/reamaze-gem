@@ -3,7 +3,7 @@ raise "brand_subdomain must be provided for Reamaze" unless defined? brand_subdo
 user_id = nil unless defined? user_id
 user_email = nil unless defined? user_email
 sso_key = nil unless defined? sso_key
-auth_key = sso_key ? OpenSSL::HMAC.hexdigest('sha256', sso_key, "#{user.id}:#{user.email}") : nil
+auth_key = (sso_key && user_id && user_email) ? OpenSSL::HMAC.hexdigest('sha256', sso_key, "#{user_id}:#{user_email}") : nil
 %>
 
 <script type="text/javascript">
